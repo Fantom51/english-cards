@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <header id="mainHeader">
+            <h1>Vocabulary Pro</h1>
+            <nav id="mainNav">
+                <button onclick="showSection('training')">Тренировка</button>
+                <button onclick="showSection('library')">Библиотека</button>
+                <button onclick="showSection('stats')">Статистика</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Секция тренировок -->
+            <section id="training" class="section">
+                <div id="trainingMenu">
+                    <div class="category-grid">
+                        <button onclick="startTraining('Classic')">🃏 Классический перевод</button>
+                        <button onclick="startTraining('Archive')">📦 Архив</button>
+                        <button onclick="startTraining('Spelling')">✍️ Правописание</button>
+                        <button onclick="startRandomWords()" style="background:#673ab7; color:white;">🎲 Случайные слова</button>
+                    </div>
+                </div>
+                <div id="trainingSession" style="display:none;">
+                    <button class="exit-btn" onclick="stopTraining()" style="margin-bottom: 20px; padding: 12px 24px; font-size: 1.2em; font-weight: bold; cursor: pointer;">← Назад</button>
+                    <div id="flashcardsContainer"></div>
+                </div>
+            </section>
+
+            <!-- Секция библиотеки -->
+            <section id="library" class="section" style="display:none">
+                <div class="add-word-form">
+                    <input type="text" id="wordInput" placeholder="Слово">
+                    <input type="text" id="transInput" placeholder="Перевод">
+                    <input type="text" id="transcriptionInput" placeholder="Транскрипция">
+                    <input type="text" id="contextInput" placeholder="Пример">
+                    
+                    <select id="tagInput" onchange="onTagChange()">
+                        <option value="Noun">Существительное</option>
+                        <option value="Verb">Глагол</option>
+                        <option value="Adjective">Прилагательное</option>
+                        <option value="Adverb">Наречие</option>
+                        <option value="Preposition">Предлог</option>
+                        <option value="Conjunction">Союз</option>
+                        <option value="Interjection">Междометие</option>
+                        <option value="Phrase">Фраза</option>
+                    </select>
+                    
+                    <button class="add-btn" onclick="addNewWord()">Добавить слово</button>
+                </div>
+                
+                <div class="library-controls">
+                    <div id="wordCount" style="margin-bottom: 10px; font-weight: bold;"></div>
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <input type="text" id="searchInput" placeholder="Поиск..." oninput="renderLibrary()" style="flex: 1; box-sizing: border-box; padding: 10px;">
+                        <select id="filterSelect" onchange="renderLibrary()" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; background: white; cursor: pointer;">
+                            <option value="ALL">Все категории</option>
+                            <option value="Noun">Существительное</option>
+                            <option value="Verb">Глагол</option>
+                            <option value="Adjective">Прилагательное</option>
+                            <option value="Adverb">Наречие</option>
+                            <option value="Preposition">Предлог</option>
+                            <option value="Conjunction">Союз</option>
+                            <option value="Interjection">Междометие</option>
+                            <option value="Phrase">Фраза</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="wordsList"></div>
+            </section>
+
+            <!-- Секция статистики -->
+            <section id="stats" class="section" style="display:none">
+                <div id="statsContent"></div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Модальное окно редактирования -->
+    <div id="editModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;" onclick="if(event.target === this) closeModal()">
+        <div style="background:white; padding:20px; border-radius:8px; width:90%; max-width:450px; max-height:90vh; overflow-y:auto; display:grid; gap:10px;">
+            <h3>Редактирование слова</h3>
+            
+            <label style="font-size:13px; font-weight:bold;">Слово:</label>
+            <input type="text" id="editWord" placeholder="Слово" style="padding:8px; border:1px solid #ccc; border-radius:4px;">
+            
+            <label style="font-size:13px; font-weight:bold;">Транскрипция:</label>
+            <input type="text" id="editTranscription" placeholder="Транскрипция" style="padding:8px; border:1px solid #ccc; border-radius:4px;">
+            
+            <!-- Контейнер для динамических переводов, примеров и тегов -->
+            <div id="editTranslationsContainer"></div>
+
+            <div style="display:flex; gap:10px; margin-top:10px;">
+                <button type="button" onclick="saveEdit()" style="flex:1; padding:10px; background:#4a90e2; color:white; border:none; border-radius:4px; cursor:pointer;">Сохранить</button>
+                <button type="button" onclick="closeModal()" style="flex:1; padding:10px; background:#ddd; border:none; border-radius:4px; cursor:pointer;">Отмена</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,451 @@
+/* ==================== ПЕРЕМЕННЫЕ И ОСНОВНЫЕ НАСТРОЙКИ ==================== */
+:root {
+    --primary: #4a90e2;
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-color: #2c3e50;
+    --text-muted: #555555;
+    --border-color: #ddd;
+    --input-bg: #ffffff;
+    --input-text: #2c3e50;
+    --btn-secondary-bg: #e3f2fd;
+    --btn-secondary-text: #1565c0;
+}
+
+body.dark-theme {
+    --primary: #4a90e2;
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --text-muted: #b0b0b0;
+    --border-color: #333333;
+    --input-bg: #2a2a2a;
+    --input-text: #ffffff;
+    --btn-secondary-bg: #263238;
+    --btn-secondary-text: #80cbc4;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.main-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+nav button {
+    padding: 10px 20px;
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 0 5px;
+    font-weight: 500;
+}
+
+nav button:hover {
+    background: #ccc;
+}
+
+/* ==================== ФОРМЫ И ПОЛЯ ВВОДА ==================== */
+.add-word-form {
+    display: grid;
+    gap: 10px;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+input, select, textarea {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-bg) !important;
+    color: var(--input-text) !important;
+}
+
+.add-btn {
+    padding: 15px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+/* ==================== МЕНЮ КАТЕГОРИЙ И ТРЕНИРОВКИ ==================== */
+.category-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.category-grid button {
+    padding: 15px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* ==================== КАРТОЧКИ И ФЛАШКАРТЫ ==================== */
+#flashcardsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%; /* Убрана фиксированная height: 350px */
+}
+
+.card-wrapper {
+    width: 100%;
+    /* Убрана фиксированная height: 250px и position: absolute */
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 25px 20px;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.word-item {
+    background: var(--card-bg) !important;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 5px solid var(--primary);
+    border-top: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.word-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.word-actions button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    background: #eef2f7;
+    transition: background 0.2s;
+}
+
+.word-actions button:hover {
+    background: #ddd;
+}
+
+.edit-word-btn {
+    background-color: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.edit-word-btn:hover {
+    background-color: #e5e7eb;
+}
+
+/* ==================== СТАТИСТИКА ==================== */
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.stats-table th, .stats-table td {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.color-box {
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+    border-radius: 2px;
+}
+
+.pie-chart {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+    border: 1px solid var(--border-color);
+    box-sizing: border-box;
+}
+
+/* ==================== УНИВЕРСАЛЬНАЯ ПОДГОНКА ПОД ТЕМУ ==================== */
+.section > div, .modal-content, 
+div[style*="background:white"], div[style*="background: white"],
+div[style*="background:#fff"], div[style*="background: #fff"] {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+.word-item h3, .word-item p, .card-wrapper h1, .card-wrapper h2, .card-wrapper p {
+    color: var(--text-color) !important;
+}
+
+.word-item p[style*="italic"], .card-wrapper p[style*="italic"] {
+    color: var(--text-muted) !important;
+}
+
+#statsContent div[style*="border-bottom"] {
+    border-color: var(--border-color) !important;
+}
+
+/* ==================== КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ ==================== */
+.theme-toggle-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background 0.3s, color 0.3s;
+}
+
+.theme-toggle-btn:hover {
+    opacity: 0.85;
+}
+
+/* ==================== СПЕЦИАЛЬНЫЕ НАСТРОЙКИ КНОПОК ==================== */
+
+/* 1. ФИОЛЕТОВАЯ КНОПКА ("Случайные слова") В ЛЮБОЙ ТЕМЕ */
+button[onclick*="startRandomTraining"], 
+.random-training-btn {
+    background-color: #8e44ad !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+button[onclick*="startRandomTraining"]:hover, 
+.random-training-btn:hover {
+    background-color: #732d91 !important;
+}
+
+/* 2. СВЕТЛАЯ ТЕМА: КНОПКИ ТРЕНИРОВКИ СИНЕГО ЦВЕТА */
+body:not(.dark-theme) #trainingMenu button,
+body:not(.dark-theme) #trainingSession button,
+body:not(.dark-theme) .training-btn,
+body:not(.dark-theme) .category-grid button:nth-child(1), 
+body:not(.dark-theme) .category-grid button:nth-child(2) {
+    background-color: #4a90e2 !important;
+    color: #ffffff !important;
+    border: none !important;
+    transition: background-color 0.2s;
+}
+
+body:not(.dark-theme) #trainingMenu button:hover,
+body:not(.dark-theme) #trainingSession button:hover,
+body:not(.dark-theme) .training-btn:hover {
+    background-color: #357abd !important;
+}
+
+/* Исключение для фиолетовой кнопки в светлой теме */
+body:not(.dark-theme) button[onclick*="startRandomTraining"] {
+    background-color: #8e44ad !important;
+}
+
+/* 3. ТЕМНАЯ ТЕМА: ВСЕ КНОПКИ */
+body.dark-theme button, 
+body.dark-theme .word-actions button {
+    background-color: #2a2a2a !important;
+    color: #e0e0e0 !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+body.dark-theme nav button:hover {
+    background-color: #383838 !important;
+}
+
+body.dark-theme button[onclick*="deleteWord"] {
+    background-color: #4a2c2c !important;
+    color: #ff8a80 !important;
+    border-color: #6b3535 !important;
+}
+
+body.dark-theme button[onclick*="openEditModal"],
+body.dark-theme .edit-word-btn {
+    background-color: #1c3144 !important;
+    color: #80d8ff !important;
+    border-color: #264663 !important;
+}
+
+body.dark-theme button[onclick*="addNewWord"], 
+body.dark-theme button[onclick*="startTraining"],
+body.dark-theme .add-btn {
+    background-color: #2e7d32 !important;
+    color: #ffffff !important;
+    border-color: #388e3c !important;
+}
+
+body.dark-theme button[onclick*="startRandomTraining"] {
+    background-color: #8e44ad !important;
+    color: #ffffff !important;
+    border-color: #732d91 !important;
+}
+
+
+/* ==================== МОДАЛЬНОЕ ОКНО РЕДАКТИРОВАНИЯ ==================== */
+#editModal {
+    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.6) !important;
+}
+
+#editModal > div {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+}
+
+#editModal h3 {
+    margin-top: 0;
+    color: var(--text-color);
+    font-size: 1.25em;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+#editModal label {
+    color: var(--text-muted);
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+#editModal input, 
+#editModal select, 
+#editModal textarea {
+    background-color: var(--input-bg) !important;
+    color: var(--input-text) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 6px !important;
+    padding: 10px !important;
+}
+
+/* Строки с переводами внутри модального окна */
+.edit-translation-row {
+    background: var(--bg-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    padding: 12px !important;
+    margin-bottom: 12px !important;
+}
+
+/* Кнопка добавления варианта */
+#editTranslationsContainer button[type="button"]:not(.edit-translation-row button) {
+    background-color: var(--btn-secondary-bg) !important;
+    color: var(--btn-secondary-text) !important;
+    border: 1px dashed var(--border-color) !important;
+    width: 100%;
+    padding: 10px !important;
+    border-radius: 6px !important;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+#editTranslationsContainer button[type="button"]:not(.edit-translation-row button):hover {
+    opacity: 0.85;
+}
+
+/* Кнопка удаления отдельного перевода */
+.edit-translation-row button {
+    background-color: #ffebee !important;
+    color: #c62828 !important;
+    border: none !important;
+    padding: 6px 10px !important;
+    border-radius: 4px !important;
+    font-size: 0.85em;
+    cursor: pointer;
+}
+
+body.dark-theme .edit-translation-row button {
+    background-color: #4a2c2c !important;
+    color: #ff8a80 !important;
+}
+
+/* Кнопки Сохранить / Отмена в модальном окне */
+#editModal button[onclick*="saveEdit"] {
+    background-color: var(--primary) !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 12px !important;
+    border-radius: 6px !important;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#editModal button[onclick*="closeModal"]:last-child {
+    background-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+    border: none !important;
+    padding: 12px !important;
+    border-radius: 6px !important;
+    font-weight: 500;
+    cursor: pointer;
+}
+.word-item.expanded .header-tags {
+    display: none !important;
+}
