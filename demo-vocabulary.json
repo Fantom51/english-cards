@@ -1,0 +1,230 @@
+[
+  {
+    "id": "demo-01",
+    "word": "doctor",
+    "translation": "врач",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-02",
+    "word": "nurse",
+    "translation": "медсестра",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-03",
+    "word": "hospital",
+    "translation": "больница",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-04",
+    "word": "patient",
+    "translation": "пациент",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-05",
+    "word": "medicine",
+    "translation": "лекарство",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-06",
+    "word": "surgery",
+    "translation": "хирургия",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-07",
+    "word": "bus",
+    "translation": "автобус",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-08",
+    "word": "train",
+    "translation": "поезд",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-09",
+    "word": "tram",
+    "translation": "трамвай",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-10",
+    "word": "subway",
+    "translation": "метро",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-11",
+    "word": "railway",
+    "translation": "железная дорога",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-12",
+    "word": "taxi",
+    "translation": "такси",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-13",
+    "word": "apple",
+    "translation": "яблоко",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-14",
+    "word": "pear",
+    "translation": "груша",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-15",
+    "word": "orange",
+    "translation": "апельсин",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-16",
+    "word": "banana",
+    "translation": "банан",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-17",
+    "word": "peach",
+    "translation": "персик",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-18",
+    "word": "grape",
+    "translation": "виноградина",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-19",
+    "word": "computer",
+    "translation": "компьютер",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-20",
+    "word": "laptop",
+    "translation": "ноутбук",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-21",
+    "word": "keyboard",
+    "translation": "клавиатура",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-22",
+    "word": "software",
+    "translation": "программное обеспечение",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-23",
+    "word": "processor",
+    "translation": "процессор",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-24",
+    "word": "database",
+    "translation": "база данных",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-25",
+    "word": "school",
+    "translation": "школа",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-26",
+    "word": "teacher",
+    "translation": "учитель",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-27",
+    "word": "student",
+    "translation": "ученик",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-28",
+    "word": "classroom",
+    "translation": "классная комната",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-29",
+    "word": "lesson",
+    "translation": "урок",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-30",
+    "word": "homework",
+    "translation": "домашнее задание",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-31",
+    "word": "joy",
+    "translation": "радость",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-32",
+    "word": "sadness",
+    "translation": "печаль",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-33",
+    "word": "anger",
+    "translation": "гнев",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-34",
+    "word": "fear",
+    "translation": "страх",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-35",
+    "word": "happiness",
+    "translation": "счастье",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-36",
+    "word": "anxiety",
+    "translation": "тревога",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-37",
+    "word": "volcano",
+    "translation": "вулкан",
+    "tag": "Noun"
+  },
+  {
+    "id": "demo-38",
+    "word": "compass",
+    "translation": "компас",
+    "tag": "Noun"
+  }
+]

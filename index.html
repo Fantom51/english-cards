@@ -4,106 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vocabulary Pro</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="main-container">
-        <header id="mainHeader">
+        <header>
             <h1>Vocabulary Pro</h1>
             <nav id="mainNav">
-                <button onclick="showSection('training')">Тренировка</button>
-                <button onclick="showSection('library')">Библиотека</button>
-                <button onclick="showSection('stats')">Статистика</button>
+                <button data-section="training">Тренировка</button>
+                <button data-section="library">Библиотека</button>
+                <button data-section="stats">Статистика</button>
+                <button data-section="clusters">Кластеры</button>
             </nav>
         </header>
-
+        <p id="storageStatus" role="status"></p>
         <main>
-            <!-- Секция тренировок -->
             <section id="training" class="section">
-                <div id="trainingMenu">
-                    <div class="category-grid">
-                        <button onclick="startTraining('Classic')">🃏 Классический перевод</button>
-                        <button onclick="startTraining('Archive')">📦 Архив</button>
-                        <button onclick="startTraining('Spelling')">✍️ Правописание</button>
-                        <button onclick="startRandomWords()" style="background:#673ab7; color:white;">🎲 Случайные слова</button>
-                    </div>
+                <div id="trainingMenu" class="category-grid">
+                    <button id="startClassic">🃏 Классический перевод</button>
+                    <button id="startArchive">📦 Архив</button>
+                    <button id="startSpelling">✍️ Правописание</button>
+                    <button id="startRandom" class="random-training-btn">🎲 Случайные слова</button>
                 </div>
-                <div id="trainingSession" style="display:none;">
-                    <button class="exit-btn" onclick="stopTraining()" style="margin-bottom: 20px; padding: 12px 24px; font-size: 1.2em; font-weight: bold; cursor: pointer;">← Назад</button>
+                <div id="trainingSession" hidden>
+                    <button id="stopTraining">← Назад</button>
                     <div id="flashcardsContainer"></div>
                 </div>
             </section>
-
-            <!-- Секция библиотеки -->
-            <section id="library" class="section" style="display:none">
-                <div class="add-word-form">
-                    <input type="text" id="wordInput" placeholder="Слово">
-                    <input type="text" id="transInput" placeholder="Перевод">
-                    <input type="text" id="transcriptionInput" placeholder="Транскрипция">
-                    <input type="text" id="contextInput" placeholder="Пример">
-                    
-                    <select id="tagInput" onchange="onTagChange()">
-                        <option value="Noun">Существительное</option>
-                        <option value="Verb">Глагол</option>
-                        <option value="Adjective">Прилагательное</option>
-                        <option value="Adverb">Наречие</option>
-                        <option value="Preposition">Предлог</option>
-                        <option value="Conjunction">Союз</option>
-                        <option value="Interjection">Междометие</option>
-                        <option value="Phrase">Фраза</option>
-                    </select>
-                    
-                    <button class="add-btn" onclick="addNewWord()">Добавить слово</button>
-                </div>
-                
+            <section id="library" class="section" hidden>
+                <form id="addForm" class="add-word-form">
+                    <input id="wordInput" aria-label="Слово" placeholder="Слово" required>
+                    <input id="transcriptionInput" aria-label="Транскрипция" placeholder="Транскрипция">
+                    <button type="button" id="lookup">Подсказать часть речи</button>
+                    <div id="translationsContainer"></div>
+                    <button type="button" id="addSense">Добавить вариант перевода</button>
+                    <button class="add-btn">Добавить слово</button>
+                    <p id="addFeedback" role="status"></p>
+                </form>
                 <div class="library-controls">
-                    <div id="wordCount" style="margin-bottom: 10px; font-weight: bold;"></div>
-                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                        <input type="text" id="searchInput" placeholder="Поиск..." oninput="renderLibrary()" style="flex: 1; box-sizing: border-box; padding: 10px;">
-                        <select id="filterSelect" onchange="renderLibrary()" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; background: white; cursor: pointer;">
-                            <option value="ALL">Все категории</option>
-                            <option value="Noun">Существительное</option>
-                            <option value="Verb">Глагол</option>
-                            <option value="Adjective">Прилагательное</option>
-                            <option value="Adverb">Наречие</option>
-                            <option value="Preposition">Предлог</option>
-                            <option value="Conjunction">Союз</option>
-                            <option value="Interjection">Междометие</option>
-                            <option value="Phrase">Фраза</option>
-                        </select>
+                    <div class="storage-actions">
+                        <button id="exportData">Экспорт</button>
+                        <button id="importData">Импорт</button>
+                        <button id="exportRaw">Скачать исходные данные</button>
+                        <input id="importFile" type="file" accept=".json,application/json" hidden>
                     </div>
+                    <p id="wordCount"></p>
+                    <input id="searchInput" aria-label="Поиск" placeholder="Поиск…">
+                    <select id="filterSelect" aria-label="Категория">
+                        <option value="ALL">Все категории</option>
+                    </select>
                 </div>
                 <div id="wordsList"></div>
             </section>
-
-            <!-- Секция статистики -->
-            <section id="stats" class="section" style="display:none">
+            <section id="stats" class="section" hidden>
                 <div id="statsContent"></div>
+            </section>
+            <section id="clusters" class="section" hidden>
+                <h2>Семантическая кластеризация</h2>
+                <p id="clusterWordCount"></p>
+                <form class="add-word-form">
+                    <label for="clusterThreshold">Порог косинусного расстояния</label>
+                    <input id="clusterThreshold" type="number" min="0.01" max="2" step="0.01" value="0.65" required>
+                    <button class="add-btn" disabled>Кластеризовать словарь</button>
+                </form>
+                <progress id="clusterProgress" aria-label="Вычисление кластеров" hidden></progress>
+                <p id="clusterStatus" role="status"></p>
+                <div id="clusterResults"></div>
             </section>
         </main>
     </div>
-
-    <!-- Модальное окно редактирования -->
-    <div id="editModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;" onclick="if(event.target === this) closeModal()">
-        <div style="background:white; padding:20px; border-radius:8px; width:90%; max-width:450px; max-height:90vh; overflow-y:auto; display:grid; gap:10px;">
-            <h3>Редактирование слова</h3>
-            
-            <label style="font-size:13px; font-weight:bold;">Слово:</label>
-            <input type="text" id="editWord" placeholder="Слово" style="padding:8px; border:1px solid #ccc; border-radius:4px;">
-            
-            <label style="font-size:13px; font-weight:bold;">Транскрипция:</label>
-            <input type="text" id="editTranscription" placeholder="Транскрипция" style="padding:8px; border:1px solid #ccc; border-radius:4px;">
-            
-            <!-- Контейнер для динамических переводов, примеров и тегов -->
+    <dialog id="editModal" aria-labelledby="editTitle">
+        <form id="editForm">
+            <h3 id="editTitle">Редактирование слова</h3>
+            <p id="editStatus" role="status"></p>
+            <label for="editWord">Слово</label>
+            <input id="editWord" required>
+            <label for="editTranscription">Транскрипция</label>
+            <input id="editTranscription">
             <div id="editTranslationsContainer"></div>
-
-            <div style="display:flex; gap:10px; margin-top:10px;">
-                <button type="button" onclick="saveEdit()" style="flex:1; padding:10px; background:#4a90e2; color:white; border:none; border-radius:4px; cursor:pointer;">Сохранить</button>
-                <button type="button" onclick="closeModal()" style="flex:1; padding:10px; background:#ddd; border:none; border-radius:4px; cursor:pointer;">Отмена</button>
-            </div>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+            <button type="button" id="editSense">Добавить вариант</button>
+            <button class="add-btn">Сохранить</button>
+            <button type="button" id="cancelEdit">Отмена</button>
+        </form>
+    </dialog>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
