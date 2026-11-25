@@ -1,6 +1,21 @@
-﻿.DS_Store
+﻿# System files
+.DS_Store
 Thumbs.db
+
+# IDE
 .vscode/
 .idea/
+
+# Logs
 *.log
+
+# Codex
 .codex/AGENTS.override.md
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
